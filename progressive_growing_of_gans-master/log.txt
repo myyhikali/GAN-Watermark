@@ -1,0 +1,180 @@
+Initializing TensorFlow...
+WARNING: Logging before flag parsing goes to stderr.
+W0604 04:01:12.205380 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/tfutil.py:56: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+W0604 04:01:12.205564 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/tfutil.py:57: The name tf.set_random_seed is deprecated. Please use tf.compat.v1.set_random_seed instead.
+
+W0604 04:01:12.215289 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/tfutil.py:65: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+W0604 04:01:12.215430 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/tfutil.py:72: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+Running train.train_progressive_gan()...
+Streaming data using dataset.TFRecordDataset...
+W0604 04:01:13.573270 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/dataset.py:72: The name tf.python_io.TFRecordOptions is deprecated. Please use tf.io.TFRecordOptions instead.
+
+W0604 04:01:13.573425 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/dataset.py:72: The name tf.python_io.TFRecordCompressionType is deprecated. Please use tf.compat.v1.python_io.TFRecordCompressionType instead.
+
+W0604 04:01:13.573525 140711243958080 deprecation.py:323] From /tf/notebooks/progressive_growing_of_gans-master/dataset.py:73: tf_record_iterator (from tensorflow.python.lib.io.tf_record) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use eager execution and: 
+`tf.data.TFRecordDataset(path)`
+W0604 04:01:13.591009 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/dataset.py:111: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+W0604 04:01:13.626078 140711243958080 deprecation.py:323] From /usr/local/lib/python3.6/dist-packages/tensorflow/python/data/util/random_seed.py:58: add_dispatch_support.<locals>.wrapper (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+W0604 04:01:13.695484 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/dataset.py:131: The name tf.data.Iterator is deprecated. Please use tf.compat.v1.data.Iterator instead.
+
+W0604 04:01:13.695608 140711243958080 deprecation.py:323] From /tf/notebooks/progressive_growing_of_gans-master/dataset.py:131: DatasetV1.output_types (from tensorflow.python.data.ops.dataset_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.data.get_output_types(dataset)`.
+W0604 04:01:13.695691 140711243958080 deprecation.py:323] From /tf/notebooks/progressive_growing_of_gans-master/dataset.py:131: DatasetV1.output_shapes (from tensorflow.python.data.ops.dataset_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.data.get_output_shapes(dataset)`.
+W0604 04:01:13.698338 140711243958080 deprecation.py:323] From /usr/local/lib/python3.6/dist-packages/tensorflow/python/data/ops/iterator_ops.py:348: Iterator.output_types (from tensorflow.python.data.ops.iterator_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.data.get_output_types(iterator)`.
+W0604 04:01:13.698472 140711243958080 deprecation.py:323] From /usr/local/lib/python3.6/dist-packages/tensorflow/python/data/ops/iterator_ops.py:349: Iterator.output_shapes (from tensorflow.python.data.ops.iterator_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.data.get_output_shapes(iterator)`.
+W0604 04:01:13.698556 140711243958080 deprecation.py:323] From /usr/local/lib/python3.6/dist-packages/tensorflow/python/data/ops/iterator_ops.py:351: Iterator.output_classes (from tensorflow.python.data.ops.iterator_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use `tf.compat.v1.data.get_output_classes(iterator)`.
+Dataset shape = [3, 32, 32]
+Dynamic range = [0, 255]
+Label size    = 0
+Constructing networks...
+W0604 04:01:14.430405 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/networks.py:103: The name tf.nn.avg_pool is deprecated. Please use tf.nn.avg_pool2d instead.
+
+
+G                           Params      OutputShape             WeightShape             
+---                         ---         ---                     ---                     
+latents_in                  -           (?, 512)                -                       
+labels_in                   -           (?, 0)                  -                       
+lod                         -           ()                      -                       
+4x4/PixelNorm               -           (?, 512)                -                       
+4x4/Dense                   4194816     (?, 512, 4, 4)          (512, 8192)             
+4x4/Conv                    2359808     (?, 512, 4, 4)          (3, 3, 512, 512)        
+ToRGB_lod3                  1539        (?, 3, 4, 4)            (1, 1, 512, 3)          
+8x8/Conv0_up                2359808     (?, 512, 8, 8)          (3, 3, 512, 512)        
+8x8/Conv1                   2359808     (?, 512, 8, 8)          (3, 3, 512, 512)        
+ToRGB_lod2                  1539        (?, 3, 8, 8)            (1, 1, 512, 3)          
+Upscale2D                   -           (?, 3, 8, 8)            -                       
+Grow_lod2                   -           (?, 3, 8, 8)            -                       
+16x16/Conv0_up              2359808     (?, 512, 16, 16)        (3, 3, 512, 512)        
+16x16/Conv1                 2359808     (?, 512, 16, 16)        (3, 3, 512, 512)        
+ToRGB_lod1                  1539        (?, 3, 16, 16)          (1, 1, 512, 3)          
+Upscale2D_1                 -           (?, 3, 16, 16)          -                       
+Grow_lod1                   -           (?, 3, 16, 16)          -                       
+32x32/Conv0_up              2359808     (?, 512, 32, 32)        (3, 3, 512, 512)        
+32x32/Conv1                 2359808     (?, 512, 32, 32)        (3, 3, 512, 512)        
+ToRGB_lod0                  1539        (?, 3, 32, 32)          (1, 1, 512, 3)          
+Upscale2D_2                 -           (?, 3, 32, 32)          -                       
+Grow_lod0                   -           (?, 3, 32, 32)          -                       
+images_out                  -           (?, 3, 32, 32)          -                       
+---                         ---         ---                     ---                     
+Total                       20719628                                                    
+
+
+D                           Params      OutputShape             WeightShape             
+---                         ---         ---                     ---                     
+images_in                   -           (?, 3, 32, 32)          -                       
+lod                         -           ()                      -                       
+FromRGB_lod0                2048        (?, 512, 32, 32)        (1, 1, 3, 512)          
+32x32/Conv0                 2359808     (?, 512, 32, 32)        (3, 3, 512, 512)        
+32x32/Conv1_down            2359808     (?, 512, 16, 16)        (3, 3, 512, 512)        
+Downscale2D                 -           (?, 3, 16, 16)          -                       
+FromRGB_lod1                2048        (?, 512, 16, 16)        (1, 1, 3, 512)          
+Grow_lod0                   -           (?, 512, 16, 16)        -                       
+16x16/Conv0                 2359808     (?, 512, 16, 16)        (3, 3, 512, 512)        
+16x16/Conv1_down            2359808     (?, 512, 8, 8)          (3, 3, 512, 512)        
+Downscale2D_1               -           (?, 3, 8, 8)            -                       
+FromRGB_lod2                2048        (?, 512, 8, 8)          (1, 1, 3, 512)          
+Grow_lod1                   -           (?, 512, 8, 8)          -                       
+8x8/Conv0                   2359808     (?, 512, 8, 8)          (3, 3, 512, 512)        
+8x8/Conv1_down              2359808     (?, 512, 4, 4)          (3, 3, 512, 512)        
+Downscale2D_2               -           (?, 3, 4, 4)            -                       
+FromRGB_lod3                2048        (?, 512, 4, 4)          (1, 1, 3, 512)          
+Grow_lod2                   -           (?, 512, 4, 4)          -                       
+4x4/MinibatchStddev         -           (?, 1, 4, 4)            -                       
+4x4/Conv                    2364416     (?, 512, 4, 4)          (3, 3, 513, 512)        
+4x4/Dense0                  4194816     (?, 512)                (8192, 512)             
+4x4/Dense1                  513         (?, 1)                  (512, 1)                
+scores_out                  -           (?, 1)                  -                       
+labels_out                  -           (?, 0)                  -                       
+---                         ---         ---                     ---                     
+Total                       20726785                                                    
+
+Building TensorFlow graph...
+W0604 04:01:15.139396 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/tfutil.py:227: The name tf.train.AdamOptimizer is deprecated. Please use tf.compat.v1.train.AdamOptimizer instead.
+
+W0604 04:01:16.978955 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/tfutil.py:299: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+Setting up snapshot image grid...
+Setting up result dir...
+Saving results to results/000-pgan-cifar10-preset-v2-2gpus-fp32
+W0604 04:01:42.619733 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/train.py:203: The name tf.summary.FileWriter is deprecated. Please use tf.compat.v1.summary.FileWriter instead.
+
+Training...
+tick 1     kimg 160.8    lod 3.00  minibatch 256  time 47s          sec/tick 46.6    sec/kimg 0.29    maintenance 29.0
+W0604 04:02:34.346900 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/tfutil.py:173: The name tf.summary.scalar is deprecated. Please use tf.compat.v1.summary.scalar instead.
+
+W0604 04:02:34.514896 140711243958080 deprecation_wrapper.py:119] From /tf/notebooks/progressive_growing_of_gans-master/tfutil.py:206: The name tf.summary.merge_all is deprecated. Please use tf.compat.v1.summary.merge_all instead.
+
+tick 2     kimg 321.5    lod 3.00  minibatch 256  time 1m 33s       sec/tick 40.6    sec/kimg 0.25    maintenance 6.1
+tick 3     kimg 482.3    lod 3.00  minibatch 256  time 2m 13s       sec/tick 39.3    sec/kimg 0.24    maintenance 0.1
+tick 4     kimg 622.6    lod 2.96  minibatch 256  time 3m 02s       sec/tick 48.9    sec/kimg 0.35    maintenance 0.1
+tick 5     kimg 762.9    lod 2.73  minibatch 256  time 4m 33s       sec/tick 90.3    sec/kimg 0.64    maintenance 0.5
+tick 6     kimg 903.2    lod 2.50  minibatch 256  time 6m 05s       sec/tick 92.3    sec/kimg 0.66    maintenance 0.2
+tick 7     kimg 1043.5   lod 2.26  minibatch 256  time 7m 38s       sec/tick 92.2    sec/kimg 0.66    maintenance 0.3
+tick 8     kimg 1183.7   lod 2.03  minibatch 256  time 9m 10s       sec/tick 92.0    sec/kimg 0.66    maintenance 0.2
+tick 9     kimg 1324.0   lod 2.00  minibatch 256  time 10m 39s      sec/tick 89.3    sec/kimg 0.64    maintenance 0.2
+tick 10    kimg 1464.3   lod 2.00  minibatch 256  time 12m 07s      sec/tick 87.6    sec/kimg 0.62    maintenance 0.2
+tick 11    kimg 1604.6   lod 2.00  minibatch 256  time 13m 36s      sec/tick 88.4    sec/kimg 0.63    maintenance 0.8
+tick 12    kimg 1744.9   lod 2.00  minibatch 256  time 15m 04s      sec/tick 87.5    sec/kimg 0.62    maintenance 0.2
+tick 13    kimg 1865.2   lod 1.89  minibatch 128  time 18m 10s      sec/tick 185.9   sec/kimg 1.55    maintenance 0.2
+tick 14    kimg 1985.5   lod 1.69  minibatch 128  time 22m 32s      sec/tick 261.3   sec/kimg 2.17    maintenance 0.4
+tick 15    kimg 2105.9   lod 1.49  minibatch 128  time 26m 54s      sec/tick 261.4   sec/kimg 2.17    maintenance 0.5
+tick 16    kimg 2226.2   lod 1.29  minibatch 128  time 31m 15s      sec/tick 260.4   sec/kimg 2.16    maintenance 0.5
+tick 17    kimg 2346.5   lod 1.09  minibatch 128  time 35m 36s      sec/tick 261.1   sec/kimg 2.17    maintenance 0.6
+tick 18    kimg 2466.8   lod 1.00  minibatch 128  time 39m 56s      sec/tick 259.3   sec/kimg 2.15    maintenance 0.6
+tick 19    kimg 2587.1   lod 1.00  minibatch 128  time 44m 14s      sec/tick 256.8   sec/kimg 2.13    maintenance 0.5
+tick 20    kimg 2707.5   lod 1.00  minibatch 128  time 48m 31s      sec/tick 257.1   sec/kimg 2.14    maintenance 0.6
+tick 21    kimg 2827.8   lod 1.00  minibatch 128  time 52m 48s      sec/tick 255.7   sec/kimg 2.13    maintenance 0.9
+tick 22    kimg 2948.1   lod 1.00  minibatch 128  time 57m 05s      sec/tick 256.4   sec/kimg 2.13    maintenance 0.6
+tick 23    kimg 3048.2   lod 0.92  minibatch 64   time 1h 05m 00s   sec/tick 474.2   sec/kimg 4.74    maintenance 0.6
+tick 24    kimg 3148.3   lod 0.75  minibatch 64   time 1h 17m 23s   sec/tick 742.4   sec/kimg 7.42    maintenance 1.2
+tick 25    kimg 3248.4   lod 0.59  minibatch 64   time 1h 29m 46s   sec/tick 741.7   sec/kimg 7.41    maintenance 1.2
+tick 26    kimg 3348.5   lod 0.42  minibatch 64   time 1h 42m 10s   sec/tick 742.2   sec/kimg 7.41    maintenance 1.1
+tick 27    kimg 3448.6   lod 0.25  minibatch 64   time 1h 54m 34s   sec/tick 743.1   sec/kimg 7.42    maintenance 1.3
+tick 28    kimg 3548.7   lod 0.09  minibatch 64   time 2h 06m 59s   sec/tick 743.9   sec/kimg 7.43    maintenance 1.1
+tick 29    kimg 3648.8   lod 0.00  minibatch 64   time 2h 19m 17s   sec/tick 737.3   sec/kimg 7.37    maintenance 1.1
+tick 30    kimg 3748.9   lod 0.00  minibatch 64   time 2h 31m 31s   sec/tick 732.2   sec/kimg 7.31    maintenance 1.0
+tick 31    kimg 3849.0   lod 0.00  minibatch 64   time 2h 43m 45s   sec/tick 732.7   sec/kimg 7.32    maintenance 1.4
+tick 32    kimg 3949.1   lod 0.00  minibatch 64   time 2h 55m 57s   sec/tick 731.1   sec/kimg 7.30    maintenance 1.0
+tick 33    kimg 4049.2   lod 0.00  minibatch 64   time 3h 08m 10s   sec/tick 732.1   sec/kimg 7.31    maintenance 1.0
+tick 34    kimg 4149.2   lod 0.00  minibatch 64   time 3h 20m 22s   sec/tick 730.9   sec/kimg 7.30    maintenance 1.0
+tick 35    kimg 4249.3   lod 0.00  minibatch 64   time 3h 32m 34s   sec/tick 731.2   sec/kimg 7.31    maintenance 1.0
+tick 36    kimg 4349.4   lod 0.00  minibatch 64   time 3h 44m 45s   sec/tick 730.2   sec/kimg 7.30    maintenance 1.0
+Traceback (most recent call last):
+  File "train.py", line 285, in <module>
+    tfutil.call_func_by_name(**config.train)
+  File "/tf/notebooks/progressive_growing_of_gans-master/tfutil.py", line 236, in call_func_by_name
+    return import_obj(func)(*args, **kwargs)
+  File "/tf/notebooks/progressive_growing_of_gans-master/train.py", line 229, in train_progressive_gan
+    tfutil.run([D_train_op, Gs_update_op], {lod_in: sched.lod, lrate_in: sched.D_lrate, minibatch_in: sched.minibatch})
+  File "/tf/notebooks/progressive_growing_of_gans-master/tfutil.py", line 21, in run
+    return tf.get_default_session().run(*args, **kwargs)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 950, in run
+    run_metadata_ptr)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1173, in _run
+    feed_dict_tensor, options, run_metadata)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1350, in _do_run
+    run_metadata)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1356, in _do_call
+    return fn(*args)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1341, in _run_fn
+    options, feed_dict, fetch_list, target_list, run_metadata)
+  File "/usr/local/lib/python3.6/dist-packages/tensorflow/python/client/session.py", line 1429, in _call_tf_sessionrun
+    run_metadata)
+KeyboardInterrupt
